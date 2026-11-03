@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f5fb" />
+    <meta name="description" content="Удобный список задач: добавляйте дела, отмечайте выполненные и возвращайтесь к ним в любое время." />
+    <title>Taskflow — список задач</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="./" aria-label="Taskflow — главная страница">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="m5.2 12.5 4.2 4.2 9.4-9.4" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span>taskflow<span class="brand-period">.</span></span>
+        </a>
+        <span class="header-note"><span class="status-dot" aria-hidden="true"></span> Меньше хаоса, больше дела</span>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="page-title">
+          <div class="hero-content">
+            <p class="eyebrow">ТВОЙ СПИСОК ДЕЛ</p>
+            <h1 id="page-title">Планы под<br /><span>контролем.</span></h1>
+            <p class="hero-description">Запиши важное, сосредоточься на главном и отмечай маленькие победы.</p>
+            <p class="today" id="today-date"></p>
+          </div>
+          <div class="summary-card" aria-label="Прогресс выполнения задач">
+            <div class="summary-top"><span>ТВОЙ ПРОГРЕСС</span><span class="summary-sparkle" aria-hidden="true">✳</span></div>
+            <div class="summary-value"><strong id="progress-number">0%</strong><span>выполнено</span></div>
+            <div class="progress-track" role="progressbar" aria-label="Задач выполнено" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-track"><span id="progress-fill"></span></div>
+            <p class="summary-hint" id="progress-description">Начни с первой задачи</p>
+          </div>
+        </section>
+
+        <section class="tasks-panel" aria-labelledby="tasks-heading">
+          <div class="panel-heading">
+            <div>
+              <p class="section-label">ПРОСТРАНСТВО ДЛЯ ДЕЛ</p>
+              <h2 id="tasks-heading">Мои задачи <span class="task-counter" id="task-count">0</span></h2>
+            </div>
+            <span class="panel-caption">Сегодня можно всё. По порядку.</span>
+          </div>
+
+          <form class="add-form" id="task-form" autocomplete="off">
+            <label class="visually-hidden" for="task-input">Новая задача</label>
+            <span class="input-icon" aria-hidden="true">+</span>
+            <input id="task-input" name="task" type="text" maxlength="120" placeholder="Что нужно сделать?" required />
+            <button type="submit" class="add-button" aria-label="Добавить задачу"><span>Добавить</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+          </form>
+          <p class="storage-warning" id="storage-warning" role="alert" hidden>Не удалось сохранить задачи в браузере. Проверьте настройки хранения данных.</p>
+
+          <div class="list-toolbar">
+            <div class="filters" role="group" aria-label="Фильтр задач">
+              <button type="button" class="filter-button is-active" data-filter="all" aria-pressed="true">Все</button>
+              <button type="button" class="filter-button" data-filter="active" aria-pressed="false">Активные</button>
+              <button type="button" class="filter-button" data-filter="completed" aria-pressed="false">Готово</button>
+            </div>
+            <button type="button" class="clear-button" id="clear-completed" disabled>Удалить выполненные</button>
+          </div>
+
+          <ul class="task-list" id="task-list" aria-label="Список задач"></ul>
+          <div class="empty-state" id="empty-state">
+            <div class="empty-illustration" aria-hidden="true">
+              <svg viewBox="0 0 80 80" fill="none"><rect x="17" y="13" width="46" height="55" rx="10" fill="#EDE9FE" stroke="#8B79D9" stroke-width="2.5"/><rect x="29" y="8" width="22" height="11" rx="5.5" fill="#B7A8F5"/><path d="m27 36 4.5 4.5L40 31m-13 22 4.5 4.5L40 48" stroke="#7463C9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M45 37h10M45 54h10" stroke="#AB9BDC" stroke-width="3" stroke-linecap="round"/></svg>
+            </div>
+            <h3 id="empty-title">Здесь пока чистый лист</h3>
+            <p id="empty-description">Добавь первую задачу — и день уже станет организованнее.</p>
+          </div>
+          <div class="panel-footer"><span id="footer-counter">0 задач осталось</span><span>Сохраняется на этом устройстве <span aria-hidden="true">↗</span></span></div>
+        </section>
+      </main>
+      <footer class="site-footer"><span>Taskflow · сделано с вниманием к деталям</span><span>To-Do List / AI-assisted project</span></footer>
+    </div>
+    <p class="visually-hidden" role="status" aria-live="polite" id="announcer"></p>
+  </body>
+</html>
